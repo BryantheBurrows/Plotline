@@ -890,10 +890,10 @@
     };
 
     const satireFeeds = [
-      { source: "The Onion", url: "https://theonion.com/feed/", host: "theonion.com" },
-      { source: "Babylon Bee", url: "https://babylonbee.com/feed/", host: "babylonbee.com" },
-      { source: "The Hard Times", url: "https://thehardtimes.net/feed/", host: "thehardtimes.net" },
-      { source: "The Daily Mash", url: "https://www.thedailymash.co.uk/feed/", host: "thedailymash.co.uk" }
+      { source: "The Onion", url: "https://theonion.com/feed/", proxy: "/feeds/the-onion", host: "theonion.com" },
+      { source: "Babylon Bee", url: "https://babylonbee.com/feed/", proxy: "/feeds/babylon-bee", host: "babylonbee.com" },
+      { source: "The Hard Times", url: "https://thehardtimes.net/feed/", proxy: "/feeds/the-hard-times", host: "thehardtimes.net" },
+      { source: "The Daily Mash", url: "https://www.thedailymash.co.uk/feed/", proxy: "/feeds/the-daily-mash", host: "thedailymash.co.uk" }
     ];
     const communityCreators = {
       Literary: [
@@ -1351,6 +1351,24 @@
     async function fetchSatireFeed(feed) {
       const timeoutMs = 10000;
       let directError;
+
+      // On the live site, Netlify fetches the feed for us (see netlify.toml), so the browser's
+      // cross-site block doesn't apply. Opened locally, this step is skipped.
+      if (feed.proxy && /^https?:$/.test(location.protocol)) {
+        const proxyController = new AbortController();
+        const proxyTimeout = setTimeout(() => proxyController.abort(), timeoutMs);
+        try {
+          const response = await fetch(feed.proxy, { signal: proxyController.signal, cache: "no-store" });
+          if (!response.ok) throw new Error(`${feed.source} feed returned HTTP ${response.status}.`);
+          const text = await response.text();
+          if (!/<(rss|feed|rdf:RDF)[\s>]/i.test(text)) throw new Error(`${feed.source} feed was not RSS.`);
+          return parseSatireFeed(text, feed);
+        } catch (error) {
+          directError = error;
+        } finally {
+          clearTimeout(proxyTimeout);
+        }
+      }
       const directController = new AbortController();
       const directTimeout = setTimeout(() => directController.abort(), timeoutMs);
       try {
