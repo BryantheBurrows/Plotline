@@ -893,7 +893,8 @@
       { source: "The Onion", url: "https://theonion.com/feed/", proxy: "/feeds/the-onion", host: "theonion.com" },
       { source: "Babylon Bee", url: "https://babylonbee.com/feed/", proxy: "/feeds/babylon-bee", host: "babylonbee.com" },
       { source: "The Hard Times", url: "https://thehardtimes.net/feed/", proxy: "/feeds/the-hard-times", host: "thehardtimes.net" },
-      { source: "The Daily Mash", url: "https://www.thedailymash.co.uk/feed/", proxy: "/feeds/the-daily-mash", host: "thedailymash.co.uk" }
+      { source: "The Daily Mash", url: "https://www.thedailymash.co.uk/feed/", proxy: "/feeds/fn/the-daily-mash", host: "thedailymash.co.uk" },
+      { source: "NewsThump", url: "https://newsthump.com/feed/", proxy: "/feeds/fn/newsthump", host: "newsthump.com" }
     ];
     const communityCreators = {
       Literary: [
@@ -1246,7 +1247,7 @@
           ? "A comedy prompt from your five"
           : "A prompt stitched from your five";
       if (satireLoading && selectedGenre === "Political satire" && !assignedStories.length) {
-        promptText.textContent = "Pulling current satire from The Onion, Babylon Bee, The Hard Times, and The Daily Mash…";
+        promptText.textContent = "Pulling current satire from The Onion, Babylon Bee, The Hard Times, The Daily Mash, and NewsThump…";
         return;
       }
       if (!assignedStories.length) {
@@ -1401,7 +1402,7 @@
       assignedStories = [];
       document.querySelector("#intro-description").textContent = "Five political-satire headlines, freshly pulled from independent comedy publishers. Read, laugh, then turn the absurdity into fiction.";
       document.querySelector("#assignment-status").textContent = "Loading political satire from live feeds";
-      document.querySelector("#feed-source-note").textContent = "The Onion · Babylon Bee · The Hard Times · The Daily Mash";
+      document.querySelector("#feed-source-note").textContent = "The Onion · Babylon Bee · The Hard Times · The Daily Mash · NewsThump";
       renderStories();
       renderPrompt();
 
