@@ -26,6 +26,6 @@
 
 [[redirects]]
   from = "/feeds/the-daily-mash"
-  to = "https://www.thedailymash.co.uk/feed/"
+  to = "https://thedailymash.co.uk/feed/"
   status = 200
   force = true
