@@ -6,6 +6,8 @@
 # Satire feeds: Netlify fetches each publisher's public RSS feed on the site's behalf,
 # so the browser reads it from plotline-bryan.netlify.app instead of being blocked
 # by the publisher's cross-site rules.
+# The Daily Mash and NewsThump go through netlify/functions/satire-feed.mjs instead,
+# because their feeds redirect.
 [[redirects]]
   from = "/feeds/the-onion"
   to = "https://theonion.com/feed/"
@@ -21,11 +23,5 @@
 [[redirects]]
   from = "/feeds/the-hard-times"
   to = "https://thehardtimes.net/feed/"
-  status = 200
-  force = true
-
-[[redirects]]
-  from = "/feeds/the-daily-mash"
-  to = "https://thedailymash.co.uk/feed/"
   status = 200
   force = true
