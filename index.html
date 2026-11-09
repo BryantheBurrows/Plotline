@@ -1824,7 +1824,8 @@
       journalEntrySelect.hidden = !currentUser || currentEntries.length === 0;
       newEntryButton.hidden = !currentUser;
       document.querySelector("#journal-local-hint").hidden = Boolean(currentUser);
-      document.querySelector("#journal-sign-in").hidden = Boolean(currentUser);
+      // Sync is only offered once Firebase is configured (see FIREBASE_SETUP.md).
+      document.querySelector("#journal-sign-in").hidden = Boolean(currentUser) || !firebaseConfigured();
       journalEntrySelect.value = currentEntryId || "";
     }
 
@@ -2569,6 +2570,10 @@
       savedRevision = documentRevision - 1;
       await saveDocument();
     });
+
+    // Without a Firebase config, Plotline runs as a local-only app: hide the sign-in entry points.
+    accountButton.hidden = !firebaseConfigured();
+    document.querySelector("#journal-sign-in").hidden = !firebaseConfigured();
 
     if (firebaseConfigured() && window.firebase) {
       try {

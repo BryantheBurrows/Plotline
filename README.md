@@ -16,12 +16,12 @@ Designed and built by **Bryan Burrows** with AI coding assistants. It's part of 
 
 - **Eight moods.** Choose Literary, Mystery, Sci-Fi, Political Satire, Comedy, Fantasy, Romance or Adventure. Each has its own set of prompt templates.
 - **Five stories, one prompt.** Plotline deals five headlines and weaves them into one writing prompt. Shuffle for a new hand, or copy the prompt.
-- **Live satire headlines.** The Political Satire mood pulls real headlines from The Onion, Babylon Bee, The Hard Times, The Daily Mash and NewsThump. If a feed is down it falls back to another source. Comedy, Fantasy, Romance and Adventure deal made-up headlines written for that mood.
+- **Live satire headlines.** The Political Satire mood pulls real headlines from The Onion, Babylon Bee, The Hard Times and The Daily Mash. If a feed is down it falls back to another source. Comedy, Fantasy, Romance and Adventure deal made-up headlines written for that mood.
 - **A writing room.** A rich-text editor with formatting, lists, links, images, tables, text and highlight colours, word counts and a "Get me started" opening-line helper.
 - **Keep your work.** Drafts autosave in the browser. You can download a story as an editable HTML file or print it to PDF.
 - **Share it.** Ready-made sharing flows for Facebook, X, Instagram and TikTok.
 - **Community demo.** Writer profiles, a "Most Read" list and follows show how a community layer could work. These run locally as a demo.
-- **Optional cloud journal.** With Firebase configured, signed-in writers get a private journal that syncs across devices, with conflict handling when two devices edit the same entry.
+- **Optional cloud journal.** With Firebase configured, signed-in writers get a private journal that syncs across devices, with conflict handling when two devices edit the same entry. Until a Firebase project is connected, the sign-in buttons stay hidden and Plotline saves drafts on the device only.
 
 ## How it was built
 
