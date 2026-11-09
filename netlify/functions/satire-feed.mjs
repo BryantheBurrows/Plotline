@@ -4,8 +4,7 @@
 // Only the feeds listed here can be fetched.
 
 const FEEDS = {
-  "the-daily-mash": ["https://www.thedailymash.co.uk/feed/", "https://thedailymash.co.uk/feed/"],
-  "newsthump": ["https://newsthump.com/feed/"]
+  "the-daily-mash": ["https://www.thedailymash.co.uk/feed/", "https://thedailymash.co.uk/feed/"]
 };
 
 export default async (req, context) => {
